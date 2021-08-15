@@ -1,10 +1,11 @@
 import React from 'react';
 import { View, StyleSheet, FlatList, TouchableOpacity, Button, Text } from 'react-native';
-
+import { useSelector } from 'react-redux';
 import ProductCard from '../components/ProductCard';
-import { PRODUCTS } from '../data/dummy-data';
 
 const ShopScreen = props => {
+
+    const products = useSelector((state) => state.products.allProducts);
 
     const goToDetails = (data) => {
         props.navigation.navigate({
@@ -39,7 +40,7 @@ const ShopScreen = props => {
         <View style={styles.screen}>
             <View>
                 <FlatList
-                    data={PRODUCTS}
+                    data={products}
                     renderItem={renderListItem}
                     keyExtractor={(item) => item.productId}
                 />
@@ -50,8 +51,8 @@ const ShopScreen = props => {
 
 const styles = StyleSheet.create({
     screen: {
-        borderColor: 'black',
-        borderWidth: 1,
+        borderTopColor: 'black',
+        borderTopWidth: 1,
         backgroundColor: 'ghostwhite',
         padding: 10,
         flex: 1,
