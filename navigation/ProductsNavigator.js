@@ -5,6 +5,7 @@ import ShopScreen from "../screens/ShopScreen";
 import ProductDetailsScreen from '../screens/ProductDetailsScreen';
 import { Ionicons } from '@expo/vector-icons';
 import UserProductsScreen from '../screens/UserProductsScreen';
+import EditProductScreen from '../screens/EditProductScreen';
 
 
 const ProductsStack = createStackNavigator();
@@ -52,6 +53,12 @@ function UserProductsStackScreen() {
                     title: 'Product Details'
                 }}
             />
+
+            <UserProductsStack.Screen name="editProduct" component={EditProductScreen} 
+                options ={{
+                    title: 'Edit Product'
+                }}
+            />
         </UserProductsStack.Navigator>
     );
 }
@@ -60,7 +67,7 @@ const Drawer = createDrawerNavigator();
 
 export default function DrawerScreen() {
     return (
-        <Drawer.Navigator screenOptions={{ headerShown: false }}>
+        <Drawer.Navigator screenOptions={{ headerShown: true }}>
             <Drawer.Screen name='Shop' component={ProductsStackScreen} />
             <Drawer.Screen name='User Products' component={UserProductsStackScreen} />
         </Drawer.Navigator>

@@ -4,7 +4,7 @@ import ProductCard from '../components/ProductCard';
 
 const ProductDetailsScreen = props => {
 
-    const { imageURL, title, price, description } = props.route.params
+    const { imageURL, title, price, description } = props.route.params;
 
     return (
 

@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, FlatList, Button } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -8,7 +8,7 @@ import { removeProduct } from '../store/actions/products';
 
 const UserProductsScreen = props => {
 
-    const userProducts = useSelector((state) => state.products.userProducts)
+    const userProducts = useSelector((state) => state.products.userProducts);
     const dispatchAction = useDispatch();
 
     const removeUserProductHandler = (productId) => {
@@ -27,12 +27,21 @@ const UserProductsScreen = props => {
                         description: data.item.description
                     }
                 })
-            }}>
+            }}
+            >
                 <ProductCard id={data.item.productId} imageURL={data.item.imageURL}>
                     <Text style={styles.title}>{data.item.title}</Text>
 
                     <View style={styles.buttonContainer}>
-                        <Button title='Edit' color='white' />
+                        <Button title='Edit' color='white' onPress={() => {
+                            props.navigation.navigate({
+                                name: 'editProduct',
+                                params: {
+                                    productId: data.item.productId
+                                }
+                            });
+                        }
+                        } />
                         <Button title='Remove' color='white' onPress={removeUserProductHandler.bind(this, data.item.productId)} />
                     </View>
 
