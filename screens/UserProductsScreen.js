@@ -5,7 +5,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import ProductCard from '../components/ProductCard';
 import { removeProduct } from '../store/actions/products';
 
-
 const UserProductsScreen = props => {
 
     const userProducts = useSelector((state) => state.products.userProducts);
@@ -37,7 +36,11 @@ const UserProductsScreen = props => {
                             props.navigation.navigate({
                                 name: 'editProduct',
                                 params: {
-                                    productId: data.item.productId
+                                    productId: data.item.productId, 
+                                    currentImageURL: data.item.imageURL,
+                                    currentPrice: data.item.price,
+                                    currentTitle: data.item.title,
+                                    currentDescription: data.item.description
                                 }
                             });
                         }

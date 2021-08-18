@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { View, Text, StyleSheet, TextInput, TouchableWithoutFeedback, Keyboard, Button } from 'react-native';
+
 import { editProduct } from '../store/actions/products';
+import { Colors } from '../constants/Colors';
 
 const EditProductScreen = props => {
-    const { productId } = props.route.params;
+    const { productId, currentTitle, currentImageURL, currentPrice, currentDescription } = props.route.params;
     const [title, setTitle] = useState("");
     const [imageURL, setImageURL] = useState("");
     const [description, setDescription] = useState("");
@@ -29,31 +31,39 @@ const EditProductScreen = props => {
                     <Text style={styles.lable}>Title: </Text>
                     <TextInput style={styles.input} maxLength={20} value={title} onChangeText={
                         (newText) => setTitle(newText)
-                    } />
+                    }
+                        placeholder={currentTitle}
+                    />
                 </View>
 
                 <View style={styles.lableContainer}>
                     <Text style={styles.lable}>Image URL: </Text>
                     <TextInput style={styles.input} maxLength={20} value={imageURL} onChangeText={
                         (newText) => setImageURL(newText)
-                    } />
+                    }
+                        placeholder={currentImageURL}
+                    />
                 </View>
 
                 <View style={styles.lableContainer}>
                     <Text style={styles.lable}>Description: </Text>
                     <TextInput style={styles.input} maxLength={20} value={description} onChangeText={
                         (newText) => setDescription(newText)
-                    } />
+                    } 
+                        placeholder={currentDescription}
+                    />
                 </View>
 
                 <View style={styles.lableContainer}>
                     <Text style={styles.lable}>Price: </Text>
                     <TextInput style={styles.input} maxLength={20} value={price} onChangeText={
                         (newText) => setPrice(newText)
-                    } />
+                    }
+                        placeholder={currentPrice.toString()}
+                    />
                 </View>
 
-                <Button title="Update" color="darkgreen" onPress={
+                <Button title="Update" color={Colors.primaryColor} onPress={
                     () => {
                         dispatchAction(editProduct(getUpdatedValues(), productId));
                     }
@@ -73,7 +83,8 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 22,
         fontWeight: 'bold',
-        marginBottom: 50
+        marginBottom: 50,
+        color: Colors.secondaryColor
     },
     lableContainer: {
         flexDirection: 'row',
@@ -83,7 +94,8 @@ const styles = StyleSheet.create({
     },
     lable: {
         fontSize: 18,
-        marginHorizontal: 10
+        marginHorizontal: 10,
+        color: Colors.secondaryColor
     },
     input: {
         borderBottomColor: 'black',

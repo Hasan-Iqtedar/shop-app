@@ -2,6 +2,9 @@ import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import ProductCard from '../components/ProductCard';
 
+import { Colors } from '../constants/Colors';
+
+
 const ProductDetailsScreen = props => {
 
     const { imageURL, title, price, description } = props.route.params;
@@ -58,11 +61,11 @@ const styles = StyleSheet.create({
     price: {
         fontSize: 20,
         fontWeight: 'bold',
-        color: 'darkgreen'
+        color: Colors.secondaryColor
     },
     priceValue: {
         fontSize: 20,
-        color: 'maroon'
+        color: Colors.primaryColor
     }
 });
 

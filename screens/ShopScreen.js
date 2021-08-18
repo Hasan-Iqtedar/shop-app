@@ -1,11 +1,36 @@
-import React from 'react';
+import React, {useLayoutEffect} from 'react';
 import { View, StyleSheet, FlatList, TouchableOpacity, Button, Text } from 'react-native';
 import { useSelector } from 'react-redux';
+import { HeaderButtons, Item } from 'react-navigation-header-buttons';
+
 import ProductCard from '../components/ProductCard';
+import HeaderButton from '../components/HeaderButton';
 
 const ShopScreen = props => {
 
     const products = useSelector((state) => state.products.allProducts);
+
+    useLayoutEffect(() => {
+        props.navigation.setOptions({
+            headerRight: () => (
+                <HeaderButtons HeaderButtonComponent={HeaderButton}>
+                    <Item 
+                        title='cart'
+                        iconName='ios-cart'
+                        onPress={() => {
+                            props.navigation.navigate({
+                                name: 'cart',
+                                params: {
+                                    
+                                }
+                            })
+                        }}
+                    />
+                </HeaderButtons>
+            )
+        });
+    })
+
 
     const goToDetails = (data) => {
         props.navigation.navigate({
@@ -18,7 +43,6 @@ const ShopScreen = props => {
             }
         });
     }
-
 
     const renderListItem = (data) => {
         return (
@@ -34,7 +58,6 @@ const ShopScreen = props => {
             </TouchableOpacity>
         );
     }
-
 
     return (
         <View style={styles.screen}>
